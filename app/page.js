@@ -1,95 +1,66 @@
+'use client'
+
 import Image from 'next/image'
+import { useState } from 'react'
 import styles from './page.module.css'
+import Toggle from './components/Toggle'
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    const [inputType, setInputType] = useState('password');
+    const [register, setRegister] = useState(false);
+    const [feedback, setFeedback] = useState('');
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+    const handleTabLogin = () => {
+        setRegister(false);
+    }
+    const handleTabRegister = () => {
+        setRegister(true);
+    }
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+    const handleLogin = e => {
+        e.preventDefault();
+        console.log('miau');
+    }
+    const handleRegister = e => {
+        e.preventDefault();
+        console.log('miau');
+    }
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
+    const showPassword = () => inputType === 'password' ? setInputType('text') : setInputType('password');
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    return (
+        <main className={styles.main}>
+            <Image className={styles.img} src={'/logo.png'} width={100} height={100} alt="logo" priority />
+            <header className={styles.tabs}>
+                <button id='tab-login' className={register ? 'tab' : 'tab active'} onClick={handleTabLogin}>Anmelden</button>
+                <button id='tab-register' className={register ? 'tab active' : 'tab'} onClick={handleTabRegister}>Registrieren</button>
+            </header>
+            <form className={styles.form}>
+                <div className={styles.inputWrapper}>
+                    <label htmlFor='username'>Nutzername</label>
+                    <input type="text" name='username' id='username' value={username} onChange={e => setUsername(e.target.value)} autoFocus />
+                </div>
+                {   register &&
+                    <div className={styles.inputWrapper}>
+                        <label htmlFor='email'>E-Mail (optional)</label>
+                        <input type="text" name='email' id='email' onChange={e => setEmail(e.target.value)} />
+                    </div>
+                }
+                <div className={styles.inputWrapper}>
+                    <label htmlFor='password'>Passwort</label>
+                    <input type={inputType} name='password' id='password' onChange={e => setPassword(e.target.value)} />
+                </div>
+                <div className={styles.showPassword}>
+                    <p>Passwort anzeigen</p> <Toggle handleToggle={showPassword} />
+                </div>
+                {!register && <button className={styles.button} onClick={e => handleLogin(e)}>Anmelden</button>}
+                {register && <button className={styles.button} onClick={e => handleRegister(e)}>Registrieren</button>}
+            </form>
+            <p className={styles.feedback}>{feedback}&nbsp;</p>
+        </main>
+    )
 }
