@@ -4,91 +4,13 @@
     padding: 0 calc(var(--default-gap) / 2);
 }
 
-.header {
-    min-height: calc(2 * var(--default-gap));
-    display: grid;
-    grid-template-columns: min-content min-content;
-    align-items: center;
-    justify-content: end;
-    gap: var(--default-gap);
-}
-
-
-/* menu */
-
-.menu {
-    height: 100%;
-    display: grid;
-    grid-template-rows: min-content min-content;
-    align-content: center;
-
-    z-index: 5;
-}
-
-.menuline {
-    display: block;
-    height: .2rem;
-    width: 3.4rem;
-
-    margin: .4rem;
-
-    background-color: var(--link-text);
-
-    border-radius: 5px;
-    transition: var(--transition-slow);
-}
-
-.menu:hover > .menu-line {
-    background-color: var(--link-hover-text);
-    transition: var(--transition-slow);
-}
-.menu.active :nth-child(1) {
-    transform: rotate(45deg) translateX(.36rem) translateY(.36rem);
-}
-.menu.active :nth-child(2) {
-    transform: rotate(135deg) translateX(-.36rem) translateY(.36rem);
-}
-
-
-/* input */
-
-.drop {
-    margin-top: var(--default-gap);
-    margin-bottom: var(--default-gap);
-}
-
-.file {
-    display: none;
-}
-.filelabel {
-    display: grid;
-    align-items: center;
-    height: calc(5 * var(--default-gap));
-    border: .1rem dashed var(--blue-darker);
-
-    text-align: center;
-    transition: var(--transition-fast);
-}
-.filelabel:hover {
-    border: .1rem dashed var(--blue-default);
-}
-.filelabel.in {
-    border: .1rem dashed var(--blue-default);
-}
-.filelabel > div {
-    font-size: var(--font-size-small);
-}
-.filelabel:hover > div {
-    color: var(--link-hover-text);
-}
-.filelabel.in > div {
-    color: var(--link-hover-text);
-}
-
 .feedback {
     min-height: calc(2 * var(--default-gap));
 }
 
+.preview {
+    margin: 0 auto;
+}
 
 /* posts */
 
@@ -105,34 +27,4 @@
 .meta > p {
     margin: 0;
     text-align: right;
-}
-
-
-/* modal */
-
-.modal {
-    width: 100vw;
-
-    background-color: var(--background-transparent-theme);
-    z-index: 2;
-    transition: var(--transition-slow);
-}
-.modal[open] {
-    display: grid;
-    align-content: center;
-    justify-content: center;
-    gap: calc(var(--default-gap) / 2);
-}
-
-.modal > a {
-    width: 100vw;
-
-    line-height: 2;
-    text-align: center;
-}
-
-/* utility */
-
-.fontsizeSmall {
-    font-size: var(--font-size-small);
 }
