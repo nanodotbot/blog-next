@@ -1,0 +1,16 @@
+/* modal */
+.modal[open] {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    gap: calc(var(--default-gap) / 2);
+}
+
+.modal > div > a {
+    line-height: 2.5;
+    text-align: center;
+}
+
+.modal > div > button {
+    margin-top: var(--default-gap);
+}

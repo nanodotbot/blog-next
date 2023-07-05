@@ -1,0 +1,32 @@
+.modal[open] {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    gap: calc(var(--default-gap) / 2);
+
+    z-index: 7;
+}
+
+.modal > div > a {
+    line-height: 2.5;
+    text-align: center;
+}
+
+.modal > div > button {
+    margin-top: var(--default-gap);
+}
+
+.contents {
+    font-size: var(--font-size-small);
+    height: calc(3 * var(--default-gap));
+    overflow: hidden;
+}
+
+.deleteBtn {
+    color: var(--white);
+    background-color: var(--error-lighter);
+}
+.deleteBtn:hover {
+    color: var(--error);
+    background-color: var(--error-lightest);
+}

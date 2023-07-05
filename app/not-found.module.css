@@ -1,0 +1,9 @@
+.wrapper {
+    height: 100vh;
+    width: 700px;
+    margin: 0 auto;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}

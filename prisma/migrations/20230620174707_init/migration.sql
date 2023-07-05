@@ -1,42 +1,43 @@
 -- CreateTable
 CREATE TABLE "Post" (
-    "id" SERIAL NOT NULL,
+    "id" INT8 NOT NULL DEFAULT unique_rowid(),
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "title" TEXT NOT NULL,
-    "content" TEXT,
-    "published" BOOLEAN NOT NULL DEFAULT false,
-    "authorId" INTEGER NOT NULL,
-    "likedById" INTEGER,
-    "dislikedById" INTEGER,
+    "pictures" STRING[],
+    "message" STRING,
+    "authorId" INT8 NOT NULL,
+    "likedById" INT8,
+    "dislikedById" INT8,
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Profile" (
-    "id" SERIAL NOT NULL,
-    "bio" TEXT,
-    "userId" INTEGER NOT NULL,
+    "id" INT8 NOT NULL DEFAULT unique_rowid(),
+    "bio" STRING,
+    "userId" INT8 NOT NULL,
 
     CONSTRAINT "Profile_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Preferences" (
-    "id" SERIAL NOT NULL,
-    "notifications" BOOLEAN,
-    "userId" INTEGER NOT NULL,
+    "id" INT8 NOT NULL DEFAULT unique_rowid(),
+    "notifications" BOOL,
+    "userId" INT8 NOT NULL,
 
     CONSTRAINT "Preferences_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "User" (
-    "id" SERIAL NOT NULL,
-    "name" TEXT NOT NULL,
-    "email" TEXT,
-    "isAdmin" BOOLEAN NOT NULL,
+    "id" INT8 NOT NULL DEFAULT unique_rowid(),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "name" STRING NOT NULL,
+    "email" STRING,
+    "password" STRING NOT NULL,
+    "isAdmin" BOOL NOT NULL DEFAULT false,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );

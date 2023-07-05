@@ -6,46 +6,63 @@ generator client {
 }
 
 datasource db {
-    provider = "postgresql"
+    provider = "cockroachdb"
     url      = env("DATABASE_URL")
 }
 
 model Post {
-    id        Int      @id @default(autoincrement())
+    id        BigInt   @id @default(autoincrement())
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     pictures  String[]
     message   String?
 
-    author   User @relation("posts", fields: [authorId], references: [id])
-    authorId Int
+    author   User   @relation("posts", fields: [authorId], references: [id])
+    authorId BigInt
 
-    likedBy   User? @relation("likedPosts", fields: [likedById], references: [id])
-    likedById Int?
+    likedBy   User?   @relation("likedPosts", fields: [likedById], references: [id])
+    likedById BigInt?
 
-    dislikedBy   User? @relation("dislikedPosts", fields: [dislikedById], references: [id])
-    dislikedById Int?
+    dislikedBy   User?   @relation("dislikedPosts", fields: [dislikedById], references: [id])
+    dislikedById BigInt?
+
+    Comment Comment[]
+}
+
+model Comment {
+    id        BigInt   @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    message   String
+
+    User   User   @relation(fields: [userId], references: [id])
+    userId BigInt
+
+    Post   Post   @relation(fields: [postId], references: [id])
+    postId BigInt
 }
 
 model Profile {
-    id     Int     @id @default(autoincrement())
-    bio    String?
-    user   User    @relation(fields: [userId], references: [id])
-    userId Int     @unique
+    id     BigInt @id @default(autoincrement())
+    bio    String @default("")
+    user   User   @relation(fields: [userId], references: [id])
+    userId BigInt @unique
 }
 
 model Preferences {
-    id            Int      @id @default(autoincrement())
-    notifications Boolean?
-    user          User     @relation(fields: [userId], references: [id])
-    userId        Int      @unique
+    id            BigInt  @id @default(autoincrement())
+    notifications Boolean @default(false)
+    user          User    @relation(fields: [userId], references: [id])
+    userId        BigInt  @unique
 }
 
 model User {
-    id      Int     @id @default(autoincrement())
-    name    String  @unique
-    email   String? @unique
-    isAdmin Boolean
+    id        BigInt   @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    name      String   @unique
+    email     String?  @default("")
+    password  String
+    isAdmin   Boolean  @default(false)
 
     posts         Post[] @relation("posts")
     likedPosts    Post[] @relation("likedPosts")
@@ -53,4 +70,5 @@ model User {
 
     profile     Profile?
     preferences Preferences?
+    Comment     Comment[]
 }

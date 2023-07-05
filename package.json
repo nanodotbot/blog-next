@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^4.15.0",
+    "@prisma/client": "^4.16.0",
+    "bcrypt": "^5.1.0",
     "cloudinary": "^1.37.1",
-    "next": "13.4.4",
-    "prisma": "^4.15.0",
+    "jsonwebtoken": "^9.0.0",
+    "next": "^13.4.6",
+    "next-auth": "^4.22.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^4.16.0"
   }
 }

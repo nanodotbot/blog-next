@@ -1,0 +1,35 @@
+.wrapper {
+    display: grid;
+    align-content: center;
+
+    width: 700px;
+    max-width: 98vw;
+    min-height: 100vh;
+    margin: 0 auto;
+}
+.title {
+    margin-bottom: var(--default-gap);
+}
+
+.showPassword {
+    display: grid;
+    grid-template-columns: max-content min-content;
+    align-items: center;
+    grid-gap: var(--default-gap);
+
+    margin-top: var(--default-gap);
+    margin-bottom: var(--default-gap);
+}
+.showPassword > p {
+    margin: 0;
+
+    font-size: var(--font-size-small);
+    line-height: 0;
+}
+.showPassword > div {
+    margin: 0;
+}
+
+.feedback {
+    min-height: calc(1.5 * var(--default-gap));
+}
