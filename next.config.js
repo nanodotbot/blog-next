@@ -5,4 +5,15 @@ const nextConfig = {
     },
 }
 
-module.exports = nextConfig
+// module.exports = nextConfig
+
+module.exports = {
+    ...nextConfig,
+    devIndicators: {
+        autoPrerender: false,
+    },
+    env: {
+        NEXT_PUBLIC_VERCEL_LOGGING: '1',
+    },
+}
+// TODO: revert
