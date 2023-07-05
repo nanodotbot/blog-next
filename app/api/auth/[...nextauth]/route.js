@@ -19,6 +19,7 @@ export const authOptions = {
 
                 const { username, password } = credentials;
 
+                // const res = await fetch('http://localhost:3000/api/login', {
                 const res = await fetch('https://calm-figolla-829d49.netlify.app/api/login', {
                     method: 'POST',
                     headers: {

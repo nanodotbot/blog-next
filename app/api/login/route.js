@@ -4,6 +4,9 @@ const bcrypt = require('bcrypt');
 export const POST = async (req, res) => {
     const { username, password } = await req.json();
 
+    console.log('login attempt');
+    console.log(username, password);
+
     const user = await prisma.user.findFirst({
         where: {
             name: username

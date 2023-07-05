@@ -37,6 +37,7 @@ export default function Home() {
     const showPassword = () => inputType === 'password' ? setInputType('text') : setInputType('password');
 
     const action = async () => {
+        console.log('action');
         setFeedback('Du wirst eingeloggt.');
         setFeedbackStatus('');
         if (register) {
@@ -74,8 +75,6 @@ export default function Home() {
             setFeedback("Der Login ist aus unbekannten Gründen fehlgeschlagen.")
         }
     }
-
-
 
     return (
         <>

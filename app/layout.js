@@ -1,23 +1,23 @@
-'use client'
-
 import './globals.css'
-import { SessionProvider } from 'next-auth/react'
 import { Karla } from 'next/font/google'
+import Provider from './components/Provider';
 
 const karla = Karla({
     subsets: ['latin']
 });
 
 export const metadata = {
-    title: 'Login | Registrieren',
-    description: 'Blog Login Registrieren',
+    title: 'Blog',
+    description: 'Blog',
 }
 
 export default function RootLayout({ children }) {
     return (
         <html lang="de">
             <body className={karla.className}>
-                <SessionProvider>{children}</SessionProvider>
+                <Provider>
+                    {children}
+                </Provider>
             </body>
         </html>
     )
