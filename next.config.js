@@ -2,15 +2,8 @@
 const nextConfig = {
     experimental: {
         serverActions: true,
+        // serverActionsBodySizeLimit: '15mb'
     },
 }
 
 module.exports = nextConfig
-
-// module.exports = {
-//     ...nextConfig,
-//     env: {
-//         NEXT_PUBLIC_VERCEL_LOGGING: '1',
-//     },
-// }
-// TODO: revert
