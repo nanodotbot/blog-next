@@ -116,10 +116,10 @@ const blog = () => {
 
     const handleUpload = async () => {
         setSpinner(true);
-        console.log('upload');
-        console.log(session?.user.name);
-        console.log(pictures);
-        console.log(message);
+        // console.log('upload');
+        // console.log(session?.user.name);
+        // console.log(pictures);
+        // console.log(message);
         const postResult = await uploadPostData(session?.user.name, pictures, message);
         return postResult;
     }
@@ -129,8 +129,8 @@ const blog = () => {
         // console.log('action: ' + previews);
         if(previews.length === 0) {
             await handleUpload().then(result => {
-                console.log('where is my result?');
-                console.log(result);
+                // console.log('where is my result?');
+                // console.log(result);
                 setResultValue(result);
             });
             setFiles([]);
@@ -149,21 +149,21 @@ const blog = () => {
         })
         previews.forEach(async preview => {
             const result = await uploadImage(preview);
-            console.log(result.secure_url);
+            // console.log(result.secure_url);
             setPictures(prevPictures => [...prevPictures, result.secure_url]);
         })
     }
     useEffect(() => {
         if(pictures.length === 0 || pictures.length !== previews.length){
-            console.log(pictures.length, previews.length);
+            // console.log(pictures.length, previews.length);
             return;
         }
-        console.log(pictures);
+        // console.log(pictures);
 
         handleUpload().then(result => {
-            console.log(result);
+            // console.log(result);
             setResultValue(result);
-            console.log(resultValue);
+            // console.log(resultValue);
         });
         setFiles([]);
         setPreviews([]);
@@ -173,13 +173,13 @@ const blog = () => {
 
     const handleComment = async (id, index) => {
         if(!comments[index]) {
-            console.log(session?.user);
+            // console.log(session?.user);
             return;
         }
-        console.log(id, comments[index], parseInt(session?.user.id));
+        // console.log(id, comments[index], parseInt(session?.user.id));
         await uploadComment(id, comments[index], session?.user.id)
         .then(result => {
-            console.log(result);
+            // console.log(result);
             setCommentResultValue(result);
             const helperComments = [...comments];
             helperComments[index] = '';
@@ -217,7 +217,7 @@ const blog = () => {
         setContentOwner(contentOwnerDelete);
         setCreationDate(creationDateDelete);
         setContent(contentDelete);
-        console.log(contentType, contentId, contentOwner, creationDate, content);
+        // console.log(contentType, contentId, contentOwner, creationDate, content);
         setOpenDelete(!openDelete);
     }
 
@@ -226,22 +226,22 @@ const blog = () => {
     }
 
     const handleDeleteContent = async (deleteId, deleteOwner) => {
-        console.log(deleteId, deleteOwner, session.user.name);
+        // console.log(deleteId, deleteOwner, session.user.name);
         if(contentType === 'Kommentar'){
-            console.log('comment');
+            // console.log('comment');
             const deleted = await deleteComment(deleteId, deleteOwner, session.user.name);
-            console.log('deleted?');
-            console.log(deleted);
+            // console.log('deleted?');
+            // console.log(deleted);
             setOpenDelete(!openDelete);
             fetchComments().then(result => {
                 setDbcomments(result)
             });    
         }
         if(contentType === 'Post'){
-            console.log('post');
+            // console.log('post');
             const deleted = await deletePost(deleteId, deleteOwner, session.user.name);
-            console.log('deleted?');
-            console.log(deleted);
+            // console.log('deleted?');
+            // console.log(deleted);
             setOpenDelete(!openDelete);
             fetchPosts().then(result => {
                 setPosts(result)

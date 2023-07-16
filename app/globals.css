@@ -484,7 +484,7 @@ dialog > div > a {
 }
 
 .feedback {
-    min-height: calc(2 * var(--font-size));
+    height: calc(1.5 * var(--default-gap));
 }
 .success {
     color: var(--success);

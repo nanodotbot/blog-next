@@ -71,7 +71,7 @@ export const uploadPostData = async (name, pictures, message) => {
                     pictures
                 }
             })
-            console.log(posted);
+            // console.log(posted);
             return posted;
         } catch (error) {
             console.log(error);
@@ -96,7 +96,7 @@ export const uploadPostData = async (name, pictures, message) => {
 }
 
 export const uploadComment = async (id, comment, uid) => {
-    console.log('upload comment');
+    // console.log('upload comment');
     try {
         const commented = await prisma.comment.create({
             data: {
@@ -153,7 +153,7 @@ export const getBio = async (name) => {
         if (bio === null) {
             return null;
         }
-        console.log(bio.bio);
+        // console.log(bio.bio);
         return JSON.stringify({
             bio: bio.bio
         })
@@ -237,7 +237,7 @@ export const deletePost = async (id, author, user) => {
                 }
             }
         }).then(result => {
-            console.log(result);
+            // console.log(result);
             const deleted = prisma.post.delete({
                 where: {
                     id
@@ -251,8 +251,31 @@ export const deletePost = async (id, author, user) => {
     }
 }
 
+export const createBio = async (id, bio) => {
+    try {
+        const created = await prisma.profile.create({
+            data: {
+                bio,
+                user: {
+                    connect: {
+                        id: BigInt(id)
+                    }
+                }
+            }
+        })
+        console.log('created');
+        console.log(created);
+        return created;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const updateBio = async (id, bio) => {
     try {
+        // console.log('try updateBio');
+        // console.log(id);
+        // console.log(bio);
         const updated = await prisma.profile.update({
             where: {
                 userId: BigInt(id)
@@ -261,6 +284,8 @@ export const updateBio = async (id, bio) => {
                 bio
             }
         })
+        // console.log('updated');
+        // console.log(updated);
         return updated;
     } catch (error) {
         console.log(error);

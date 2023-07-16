@@ -37,7 +37,7 @@ export default function Home() {
     const showPassword = () => inputType === 'password' ? setInputType('text') : setInputType('password');
 
     const action = async () => {
-        console.log('action');
+        // console.log('action');
         setFeedback('Du wirst eingeloggt.');
         setFeedbackStatus('');
         if (register) {
@@ -63,10 +63,10 @@ export default function Home() {
             password,
             redirect: false
         })
-        console.log('signin result');
-        console.log(result);
+        // console.log('signin result');
+        // console.log(result);
         if (result.error) {
-            console.log(result.error);
+            // console.log(result.error);
             setFeedbackStatus('error');
             if (result.error === "CredentialsSignin") {
                 setFeedback("Falscher Benutzername oder Passwort");

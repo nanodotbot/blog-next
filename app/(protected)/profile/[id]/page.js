@@ -1,5 +1,5 @@
 'use client'
-import { getBio, getUser, updateBio, updatePassword } from "@/app/_actions";
+import { createBio, getBio, getUser, updateBio, updatePassword } from "@/app/_actions";
 import Link from "next/link";
 import styles from './page.module.css'
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ const profile = ({ params }) => {
 
     const [user, setUser] = useState('');
     const [bio, setBio] = useState('');
+    const [bioInitialState, setBioInitialState] = useState(false);
     const [password, setPassword] = useState('');
     const [inputType, setInputType] = useState('password');
 
@@ -34,10 +35,12 @@ const profile = ({ params }) => {
     };
     const fetchBio = async () => {
         const fetchedBio = await getBio(params.id);
-        console.log(fetchedBio);
+        // console.log(fetchedBio);
         if (fetchedBio === null) {
+            setBioInitialState(false);
             return;
         }
+        setBioInitialState(true);
         const parsedBio = JSON.parse(fetchedBio);
         setBio(parsedBio.bio);
     }
@@ -48,25 +51,44 @@ const profile = ({ params }) => {
     const showPassword = () => inputType === 'password' ? setInputType('text') : setInputType('password');
 
     const saveDescription = async () => {
-        console.log(bio);
-        console.log(session?.user.id);
+        // console.log(session?.user.id);
+
+        if(bioInitialState === false) {
+            console.log(bio);
+            await createBio(session?.user.id, bio).then(result => {
+                console.log(result);
+                console.log(result.id);
+                if(result.id){
+                    setPasswordFeedback('');
+                    setFeedbackStatus('success');
+                    setBioFeedback('Beschreibung erfolgreich gespeichert.');
+                    return;
+                }
+                setFeedbackStatus('error');
+                setBioFeedback('Irgendetwas hat nicht geklappt.');    
+            })
+            return;
+        }
 
         await updateBio(session?.user.id, bio).then(result => {
-            if(result.userId){
+            console.log(result);
+            console.log(result.id);
+            if(result.id){
                 setPasswordFeedback('');
                 setFeedbackStatus('success');
                 setBioFeedback('Beschreibung erfolgreich gespeichert.');
+                return;
             }
             setFeedbackStatus('error');
             setBioFeedback('Irgendetwas hat nicht geklappt.');
         });
     }
     const savePassword = async () => {
-        console.log(password);
-        console.log(session?.user.id);
+        // console.log(password);
+        // console.log(session?.user.id);
         
         await updatePassword(session?.user.id, password).then(result => {
-            console.log(result);
+            // console.log(result);
             if(result.id) {
                 setBioFeedback('');
                 setFeedbackStatus('success');

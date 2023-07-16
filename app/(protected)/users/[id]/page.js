@@ -23,7 +23,7 @@ const userInfo = ({ params }) => {
         fetchUser();
         const fetchBio = async () => {
             const fetchedBio = await getBio(params.id);
-            console.log(fetchedBio);
+            // console.log(fetchedBio);
             if(fetchedBio === null) {
                 return;
             }
@@ -36,7 +36,7 @@ const userInfo = ({ params }) => {
     return (
         <div className={styles.wrapper}>
             <h1>{user}</h1>
-            <p>{bio}</p>
+            <p className={styles.bio}>{bio}</p>
             <Link href="../../blog/">Zurück zum Blog</Link>
         </div>
     )
