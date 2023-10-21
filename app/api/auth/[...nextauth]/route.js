@@ -19,8 +19,9 @@ export const authOptions = {
 
                 const { username, password } = credentials;
 
-                // const res = await fetch('http://localhost:3000/api/login', {
-                const res = await fetch('https://main.d3md35boecy4fh.amplifyapp.com/api/login', {
+                // TODO: keep in mind
+                const res = await fetch('http://localhost:3000/api/login', {
+                // const res = await fetch('https://main.d3md35boecy4fh.amplifyapp.com/api/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
