@@ -60,16 +60,16 @@ export default function Home() {
             setFeedback('Bitte Benutzername und Passwort eingeben.');
             return;
         }
-        // console.log('call signin with ' + username, password);
+        console.log('call signin with ' + username, password);
         const result = await signIn('credentials', {
             username,
             password,
             redirect: false
         })
-        // console.log('signin result');
-        // console.log(result);
+        console.log('signin result');
+        console.log(result);
         if (result.error) {
-            // console.log(result.error);
+            console.log(result.error);
             setFeedbackStatus('error');
             if (result.error === "CredentialsSignin") {
                 setFeedback("Falscher Benutzername oder Passwort");
