@@ -42,6 +42,88 @@
     margin-top: var(--default-gap);
 }
 
+.linkButton {
+    width: max-content;
+    margin-bottom: var(--default-gap);
+    padding: 0;
+    background-color: var(--background);
+}
+
+div.modal {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 6;
+
+    height: 100vh;
+    width: calc(100vw - (100vw - 100%));
+    border: none;
+
+    background-color: var(--background-transparent-theme);
+}
+div.modal > div.modalInner {
+    height: min-content;
+    width: 700px;
+    max-width: 95vw;
+    background-color: var(--background);
+    border: var(--border-lighter);
+}
+div.modal > div.modalInner > div.modalHeader {
+    height: var(--svg);
+    text-align: right;
+}
+
+div.modal > div.modalInner > div.modalBody {
+    padding: 0 var(--default-gap) calc(var(--default-gap) / 2) var(--default-gap);
+}
+
+div.modal > div.modalInner > div.modalBody > h2,
+div.modal > div.modalInner > div.modalBody > p,
+div.modal > div.modalInner > div.modalBody > button {
+    text-align: center;
+}
+div.modal > div.modalInner > div.modalBody > p {
+    width: 100%;
+    margin-bottom: var(--default-gap);
+}
+
+button.link {
+    width: min-content;
+    padding: 0;
+    margin: 0;
+
+    font-style: normal;
+    line-height: 0;
+    text-decoration: none;
+    background-color: var(--link-bg);
+
+    transition: var(--transition-fast);
+
+    cursor: context-menu;
+}
+button.link > span {
+    color: var(--link-text);
+    background-color: var(--link-bg);
+}
+button.link:hover > span {
+    color: var(--link-hover-text);
+    background-color: var(--link-hover-bg);
+}
+svg.icon {
+    height: var(--svg);
+    width: var(--svg);
+
+    fill: var(--link-text);
+    background-color: var(--link-bg);
+}
+svg.icon:hover {
+    fill: var(--link-hover-text);
+    background-color: var(--link-hover-bg);
+}
+
 .spinner {
     display: grid;
     align-items: center;
