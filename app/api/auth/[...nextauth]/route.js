@@ -19,8 +19,8 @@ export const authOptions = {
 
                 const { username, password } = credentials;
 
-                const res = await fetch('http://localhost:3000/api/login', {
-                // const res = await fetch('https://calm-figolla-829d49.netlify.app/api/login', {
+                // const res = await fetch('http://localhost:3000/api/login', {
+                const res = await fetch('https://main.d3md35boecy4fh.amplifyapp.com/api/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
