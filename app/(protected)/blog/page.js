@@ -14,6 +14,8 @@ import DeleteDialog from '@/app/components/DeleteDialog'
 import Spinner from '@/app/components/Spinner'
 
 const blog = () => {
+    console.log('blog');
+
     const { data: session } = useSession({
         required: true
     })
@@ -42,25 +44,27 @@ const blog = () => {
     const [dbcomments, setDbcomments] = useState([]);
     const [commentResultValue, setCommentResultValue] = useState('');
 
-    const fetchPosts = async () => {
-        console.log('fetching');
-        const fetchedPosts = await getPosts();
-        console.log(fetchedPosts);
-        return fetchedPosts;
-    }
-    const fetchComments = async () => {
-        const fetchedComments = await getComments();
-        return fetchedComments;
-    }
+    // TODO: 
+    // const fetchPosts = async () => {
+    //     console.log('fetching');
+    //     const fetchedPosts = await getPosts();
+    //     console.log(fetchedPosts);
+    //     return fetchedPosts;
+    // }
+    // const fetchComments = async () => {
+    //     const fetchedComments = await getComments();
+    //     return fetchedComments;
+    // }
 
-    useEffect(() => {
-        fetchPosts().then(result => {
-            setPosts(result)
-        });
-        fetchComments().then(result => {
-            setDbcomments(result)
-        })
-    }, [])
+    // TODO: 
+    // useEffect(() => {
+    //     fetchPosts().then(result => {
+    //         setPosts(result)
+    //     });
+    //     fetchComments().then(result => {
+    //         setDbcomments(result)
+    //     })
+    // }, [])
 
     const handleMenu = e => {
         setActive(!active);
@@ -187,21 +191,23 @@ const blog = () => {
         });
     }
     
-    useEffect(() => {
-        fetchPosts().then(result => {
-            // console.log(result);
-            setPosts(result)
-            // console.log(posts);
-        });
-        setSpinner(false);
-    }, [resultValue]);
+    // TODO: 
+    // useEffect(() => {
+    //     fetchPosts().then(result => {
+    //         // console.log(result);
+    //         setPosts(result)
+    //         // console.log(posts);
+    //     });
+    //     setSpinner(false);
+    // }, [resultValue]);
 
-    useEffect(() => {
-        fetchComments().then(result => {
-            setDbcomments(result)
-        })
-        setSpinner(false);
-    }, [commentResultValue])
+    // TODO:     
+    // useEffect(() => {
+    //     fetchComments().then(result => {
+    //         setDbcomments(result)
+    //     })
+    //     setSpinner(false);
+    // }, [commentResultValue])
 
     // useEffect(() => {
     //     // console.log(dbcomments);
@@ -271,7 +277,7 @@ const blog = () => {
 
             {!spinner ? <p className={styles.feedback}>{feedback}</p> : <div className={styles.spinner}><Spinner /></div>}
 
-            {posts?.map((post, index) => {
+            {/* {posts?.map((post, index) => {
                 return (
 
                     <div key={post.id}>
@@ -335,7 +341,7 @@ const blog = () => {
                         </form>
                     </div>
                 )
-            })}
+            })} */}
 
             <SignoutDialog open={open} />
 

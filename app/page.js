@@ -81,6 +81,7 @@ export default function Home() {
 
     return (
         <>
+            {/* TODO: keep in mind */}
             {session?.user ? redirect('/blog') : (
                 <main className={styles.main}>
 
