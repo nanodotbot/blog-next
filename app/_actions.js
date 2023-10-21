@@ -178,7 +178,7 @@ export const getPosts = async () => {
                 createdAt: 'desc'
             }
         });
-        // console.log(posts);
+        console.log(posts);
         return posts;
     } catch (error) {
         console.log(error);
@@ -200,7 +200,7 @@ export const getComments = async () => {
                 }
             }
         })
-        // console.log(comments);
+        console.log(comments);
         return comments;
     } catch (error) {
         console.log(error);

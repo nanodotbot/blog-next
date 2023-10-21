@@ -43,9 +43,9 @@ const blog = () => {
     const [commentResultValue, setCommentResultValue] = useState('');
 
     const fetchPosts = async () => {
-        // console.log('fetching');
+        console.log('fetching');
         const fetchedPosts = await getPosts();
-        // console.log(fetchedPosts);
+        console.log(fetchedPosts);
         return fetchedPosts;
     }
     const fetchComments = async () => {
@@ -85,7 +85,7 @@ const blog = () => {
         const drop = e.dataTransfer.files[0];
         // setFiles(drop)
         setFiles(prevFiles => [...prevFiles, drop]);
-        // console.log(files);
+        console.log(files);
         const reader = new FileReader();
         reader.onload = e => setPreviews(prevPreviews => [...prevPreviews, e.target.result]);
         reader.readAsDataURL(drop);
@@ -94,7 +94,7 @@ const blog = () => {
         const input = e.target.files[0];
         // setFiles(input)
         setFiles(prevFiles => [...prevFiles, input]);
-        // console.log(files);
+        console.log(files);
         const reader = new FileReader();
         reader.onload = e => setPreviews(prevPreviews => [...prevPreviews, e.target.result]);
         reader.readAsDataURL(input);
@@ -111,7 +111,7 @@ const blog = () => {
         const helperComments = [...comments];
         helperComments[index] = e.target.value;
         setComments(helperComments);
-        // console.log(comments);
+        console.log(comments);
     }
 
     const handleUpload = async () => {

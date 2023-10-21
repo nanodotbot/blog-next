@@ -20,8 +20,8 @@ export const authOptions = {
                 const { username, password } = credentials;
 
                 // TODO: keep in mind
-                const res = await fetch('http://localhost:3000/api/login', {
-                // const res = await fetch('https://main.d3md35boecy4fh.amplifyapp.com/api/login', {
+                // const res = await fetch('http://localhost:3000/api/login', {
+                const res = await fetch('https://main.d3md35boecy4fh.amplifyapp.com/api/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ export const authOptions = {
                 });
 
                 const user = await res.json();
-                // console.log(user);
+                console.log(user);
 
                 if (user) {
                     // Any object returned will be saved in `user` property of the JWT
@@ -49,10 +49,10 @@ export const authOptions = {
     ],
     callbacks: {
         async session({session, token}) {
-            // console.log('session callback');
-            // console.log(session);
+            console.log('session callback');
+            console.log(session);
             if(token.sub) {
-                // console.log(token.sub);
+                console.log(token.sub);
                 session.user.id = token.sub;
                 return session;
             }
